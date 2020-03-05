@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "movie_members")
 public class MovieMembersEntity extends BaseEntity{
     @Column
     private String name;
@@ -21,7 +21,8 @@ public class MovieMembersEntity extends BaseEntity{
     @Column
     private String role;
 
-    @Column
-    private List<MovieEntity> relatedMovies;
+    //@Column
+    //@ManyToMany(targetEntity = MovieEntity.class, fetch = FetchType.EAGER)
+    //private List<MovieEntity> relatedMovies;
 
 }
