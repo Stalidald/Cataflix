@@ -1,0 +1,9 @@
+package hu.elte.CataflixBackEnd.repositories;
+
+import hu.elte.CataflixBackEnd.entities.MovieMembersEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MovieMembersRepository extends CrudRepository<MovieMembersEntity, Long> {
+}
