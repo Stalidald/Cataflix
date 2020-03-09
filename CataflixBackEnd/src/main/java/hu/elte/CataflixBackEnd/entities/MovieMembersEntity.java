@@ -1,5 +1,6 @@
 package hu.elte.CataflixBackEnd.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,8 +22,9 @@ public class MovieMembersEntity extends BaseEntity{
     @Column
     private String role;
 
-    //@Column
-    //@ManyToMany(targetEntity = MovieEntity.class, fetch = FetchType.EAGER)
-    //private List<MovieEntity> relatedMovies;
+    @Column
+    @ManyToMany(targetEntity = MovieEntity.class, fetch = FetchType.EAGER)
+    @JsonBackReference
+    private List<MovieEntity> relatedMovies;
 
 }
