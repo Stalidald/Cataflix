@@ -1,5 +1,6 @@
 package hu.elte.CataflixBackEnd.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -54,26 +55,15 @@ public class UserEntity extends BaseEntity {
 
     @Column
     @ManyToMany
+    @JsonBackReference
     private List<UserEntity> relatives;
 
 
-    public UserEntity(String userName, String password, String type) {
-        name = "";
-
+    public UserEntity(String userName, String password, String type, int version) {
         this.userName = userName;
         this.password = password;
         this.type = type;
-
-        balance = 9999999999.9;
-        ownedMovies = new ArrayList<>();
-        //rentedMovies = new ArrayList<>();
-        //unlockedAchivements = new ArrayList<>();
-        //wishList = new ArrayList<>();
-        //relatives = new ArrayList<>();
-        ageLimit = 0;
-        creditCardNumber = "";
-        cvc = 0;
-        expireDate = "";
+        this.version = version;
     }
 
 }
