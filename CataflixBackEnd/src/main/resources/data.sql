@@ -1,4 +1,4 @@
-INSERT INTO achivement  (name, description, version) SELECT * FROM (SELECT "Registration", "Congratulation, you are a member now!", 0) AS tmp
+/*INSERT INTO achivement  (name, description, version) SELECT * FROM (SELECT "Registration", "Congratulation, you are a member now!", 0) AS tmp
 WHERE NOT EXISTS ( SELECT name FROM achivement WHERE name = "Registration") LIMIT 1;
 
 INSERT INTO user  (user_name, password, type, version)
@@ -30,3 +30,8 @@ REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members
 REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 3);
 REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (2, 3);
 SET FOREIGN_KEY_CHECKS=1;
+*/
+
+INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');

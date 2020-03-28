@@ -10,4 +10,12 @@ public class BaseEntity {
 
     @Version
     protected int version;
+
+    public long getId() {
+        return id;
+    }
+
+    public int getVersion() {
+        return version;
+    }
 }
