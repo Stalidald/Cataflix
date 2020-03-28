@@ -15,6 +15,7 @@ WHERE NOT EXISTS ( SELECT title FROM movie WHERE title = "Titanic") LIMIT 1;
 INSERT INTO movie(title, age_limit, release_year, description, rating, version) SELECT * FROM (SELECT "Avatar", 12, 2009, "Egy másik élőforma felfedezése.", 7.8, 0)AS tmp
 WHERE NOT EXISTS ( SELECT title FROM movie WHERE title = "Avatar") LIMIT 1;
 
+
 INSERT INTO movie_members(name, role, version) SELECT * FROM (SELECT "Leonardo Di Caprio", "Actor", 0)AS tmp
 WHERE NOT EXISTS ( SELECT name FROM movie_members WHERE name = "Leonardo Di Caprio") LIMIT 1;
 INSERT INTO movie_members(name, role, version) SELECT * FROM (SELECT "Kate Winslet", "Actress", 0)AS tmp
