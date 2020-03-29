@@ -71,6 +71,7 @@ public class UserEntity extends BaseEntity {
     @JsonBackReference
     private List<UserEntity> relatives;
 
+    @Column
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
