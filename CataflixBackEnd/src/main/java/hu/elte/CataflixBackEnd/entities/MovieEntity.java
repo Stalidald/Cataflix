@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "movie")
-public class MovieEntity extends BaseEntity{
+public class MovieEntity extends BaseEntity {
     @Column
     private String title;
 
@@ -35,4 +35,9 @@ public class MovieEntity extends BaseEntity{
 
     @Column
     private int rating;
+
+    public MovieEntity(String title, int rating) {
+        this.title = title;
+        this.rating = rating;
+    }
 }
