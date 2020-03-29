@@ -1,8 +1,8 @@
 # CataFlix
 
 * [Bevezetés](README.md#intro)
-* [Frontend Dokumentáció](https://github.com/Stalidald/Cataflix/blob/master/CataflixFrontEnd/README.md)
-* [Backend Dokumentáció helye](https://github.com/Stalidald/Cataflix/tree/master/CataflixBackEnd)
+* [Frontend Dokumentáció](/CataflixFrontEnd/README.md)
+* [Backend Dokumentáció helye](/CataflixBackEnd/README.md)
 * [Funkciók](README.md#features)
 * [Megjegyzés](README.md#notification)
 * [Fejlesztők](README.md#developers)
