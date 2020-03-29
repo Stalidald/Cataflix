@@ -1,13 +1,5 @@
-/*INSERT INTO achivement  (name, description, version) SELECT * FROM (SELECT "Registration", "Congratulation, you are a member now!", 0) AS tmp
+INSERT INTO achivement  (name, description, version) SELECT * FROM (SELECT "Registration", "Congratulation, you are a member now!", 0) AS tmp
 WHERE NOT EXISTS ( SELECT name FROM achivement WHERE name = "Registration") LIMIT 1;
-
-INSERT INTO user  (user_name, password, type, version)
-SELECT * FROM (SELECT "Admin", "alma", "administrator", 0) AS tmp
-WHERE NOT EXISTS ( SELECT name FROM user WHERE user_name = "Admin") LIMIT 1;
-
-INSERT INTO user  (user_name, password, type, version)
-SELECT * FROM (SELECT "Jon_Snow", "Daenerys", "ParentUser", 0) AS tmp
-WHERE NOT EXISTS ( SELECT name FROM user WHERE user_name = "Jon_Snow") LIMIT 1;
 
 
 INSERT INTO movie(title, age_limit, release_year, description, rating, version) SELECT * FROM (SELECT "Titanic", 12, 1997, "Egy hajókatasztrófa megfilmesítése.", 7.8, 0) AS tmp
@@ -30,8 +22,9 @@ REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members
 REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 3);
 REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (2, 3);
 SET FOREIGN_KEY_CHECKS=1;
-*/
 
-INSERT INTO roles(name) VALUES('ROLE_USER');
-INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+INSERT INTO roles(name) SELECT * FROM (SELECT 'ROLE_USER') AS tmp WHERE NOT EXISTS (SELECT name FROM roles WHERE name = 'ROLE_USER') LIMIT 1;
+INSERT INTO roles(name) SELECT * FROM (SELECT 'ROLE_PARENT') AS tmp WHERE NOT EXISTS (SELECT name FROM roles WHERE name = 'ROLE_PARENT') LIMIT 1;
+INSERT INTO roles(name) SELECT * FROM (SELECT 'ROLE_CHILD') AS tmp WHERE NOT EXISTS (SELECT name FROM roles WHERE name = 'ROLE_CHILD') LIMIT 1;
+INSERT INTO roles(name) SELECT * FROM (SELECT 'ROLE_ADMIN') AS tmp WHERE NOT EXISTS (SELECT name FROM roles WHERE name = 'ROLE_ADMIN') LIMIT 1;
