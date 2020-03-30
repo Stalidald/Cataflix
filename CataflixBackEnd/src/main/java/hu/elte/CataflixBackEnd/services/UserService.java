@@ -2,6 +2,8 @@ package hu.elte.CataflixBackEnd.services;
 
 import hu.elte.CataflixBackEnd.entities.UserEntity;
 import hu.elte.CataflixBackEnd.repositories.UserRepository;
+import hu.elte.CataflixBackEnd.services.exceptions.EmailNotFoundException;
+import hu.elte.CataflixBackEnd.services.exceptions.NameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -27,13 +29,25 @@ public class UserService extends BaseService<UserEntity> {
 
     @Override
     public UserEntity loadDataById(Long id) throws EntityNotFoundException {
-        return null;
+        return userRepository.findById(id).get();
     }
 
     @Override
     public UserEntity save(UserEntity userEntity) {
-        return null;
+        return userRepository.save(userEntity);
     }
 
+
+    public UserEntity loadUserByEmail(String email) throws EmailNotFoundException {
+        return userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new EmailNotFoundException(email + " not found!"));
+    }
+
+    public UserEntity loadUserByName(String name) throws NameNotFoundException {
+        return userRepository
+                .findByName(name)
+                .orElseThrow(() -> new NameNotFoundException(name + " not found!"));
+    }
 
 }
