@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 @SessionScope
-public class UserService extends BaseService {
+public class UserService extends BaseService<UserEntity> {
 
     private UserRepository userRepository;
 
@@ -21,6 +23,16 @@ public class UserService extends BaseService {
     @Override
     public Iterable<UserEntity> listAllData() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public UserEntity loadDataById(Long id) throws EntityNotFoundException {
+        return null;
+    }
+
+    @Override
+    public UserEntity save(UserEntity userEntity) {
+        return null;
     }
 
 
