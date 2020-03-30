@@ -10,7 +10,6 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.stream.Collectors;
 
 public abstract class BaseService<Data extends BaseEntity> {
 
@@ -26,10 +25,6 @@ public abstract class BaseService<Data extends BaseEntity> {
         return validator.validate(listAllData(), data);
     }
 
-
-    protected void entityInactive(BaseEntity entity) throws EntityInactiveException {
-        if (entity.getStatus() == BaseEntity.ENTITY_INACTIVE) throw new EntityInactiveException();
-    }
 
     protected void setModificationMetaData(BaseEntity entity) {
         entity.setModified(Calendar.getInstance().getTime());
@@ -47,10 +42,7 @@ public abstract class BaseService<Data extends BaseEntity> {
     }
 
     public Iterable<Data> listActiveData() {
-        return ((ArrayList<Data>) listAllData())
-                .stream()
-                .filter(d -> d.isActive() && !d.isLocked())
-                .collect(Collectors.toList());
+        return new ArrayList<>(((ArrayList<Data>) listAllData()));
     }
 
     public Data addData(Data data) throws EntityExistsException {
@@ -63,7 +55,7 @@ public abstract class BaseService<Data extends BaseEntity> {
 
     public Data updateData(Data data) throws EntityNotFoundException, EntityCannotBeChangedException {
         Data dataToUpdate = loadDataById(data.getId());
-        if (!dataValid(data) || !data.isActive() || data.isLocked()) {
+        if (!dataValid(data)) {
             throw new EntityCannotBeChangedException("SSS-1:Source data(" + data.getClass().toString() + ", " + data.getId() + ") cannot be changed!");
         }
 
@@ -77,21 +69,14 @@ public abstract class BaseService<Data extends BaseEntity> {
 
     public Data deleteData(Data data) throws EntityNotFoundException, EntityInactiveException {
         Data dataToDelete = loadDataById(data.getId());
-        if(!data.isActive() || data.isLocked()) {
-            throw new EntityInactiveException("SSS-2 Source data(" + data.getClass().toString() + ", " + data.getId() + ") is inactive!");
-        }
-
-        dataToDelete.setStatus(BaseEntity.ENTITY_INACTIVE);
         setModificationMetaData(dataToDelete);
 
         return save(dataToDelete);
     }
+
+
     public Data undo(long id) throws EntityNotFoundException, EntityCannotBeChangedException {
         Data dataToUndo = loadDataById(id);
-        if(dataToUndo.isActive() || dataToUndo.isLocked()) {
-            throw new EntityCannotBeChangedException("SSS-3: Data cannot be reverted (" + dataToUndo.getClass().toString() + ", id" + id + ")!");
-        }
-        dataToUndo.setStatus(BaseEntity.ENTITY_ACTIVE);
         setModificationMetaData(dataToUndo);
 
         return dataToUndo;

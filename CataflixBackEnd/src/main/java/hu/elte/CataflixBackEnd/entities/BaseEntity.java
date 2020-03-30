@@ -24,9 +24,6 @@ public class BaseEntity {
     protected int version;
 
     @Column
-    protected int status;
-
-    @Column
     @JsonIgnore
     protected String createdBy;
 
@@ -41,15 +38,6 @@ public class BaseEntity {
     @Column
     @JsonIgnore
     protected Date modified;
-
-    public boolean isActive() {
-        return status != ENTITY_INACTIVE;
-    }
-
-    public boolean isLocked() {
-        return status == ENTITY_CANNOT_BE_MODIFIED;
-    };
-
 
     public long getId() {
         return id;
