@@ -3,7 +3,6 @@ package hu.elte.CataflixBackEnd.controllers;
 import hu.elte.CataflixBackEnd.entities.UserEntity;
 import hu.elte.CataflixBackEnd.services.UserService;
 import hu.elte.CataflixBackEnd.services.exceptions.EmailNotFoundException;
-import hu.elte.CataflixBackEnd.services.exceptions.EntityInactiveException;
 import hu.elte.CataflixBackEnd.services.exceptions.NameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,11 +45,7 @@ public class UserController extends BaseController {
 
     @DeleteMapping("")
     public ResponseEntity<?> deleteUserById(@PathVariable long id) {
-        try {
-            return ResponseEntity.ok(userService.deleteData(userService.loadDataById(id)));
-        } catch (EntityInactiveException e) {
-            return createBadRequest(e);
-        }
+        return ResponseEntity.ok(userService.deleteData(userService.loadDataById(id)));
     }
 
 
@@ -59,8 +54,6 @@ public class UserController extends BaseController {
         try {
             return ResponseEntity.ok(userService.deleteData(userService.loadUserByName(name)));
         } catch (NameNotFoundException ex) {
-            return createBadRequest(ex);
-        } catch (EntityInactiveException ex) {
             return createBadRequest(ex);
         }
     }

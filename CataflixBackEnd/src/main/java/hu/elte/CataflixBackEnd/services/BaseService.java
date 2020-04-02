@@ -36,13 +36,8 @@ public abstract class BaseService<Data extends BaseEntity> {
         entity.setCreated(Calendar.getInstance().getTime());
     }
 
-
     private String getCurrentUser() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
-
-    public Iterable<Data> listActiveData() {
-        return new ArrayList<>(((ArrayList<Data>) listAllData()));
     }
 
     public Data addData(Data data) throws EntityExistsException {
@@ -67,19 +62,11 @@ public abstract class BaseService<Data extends BaseEntity> {
         return save(data);
     }
 
-    public Data deleteData(Data data) throws EntityNotFoundException, EntityInactiveException {
+    public Data deleteData(Data data) throws EntityNotFoundException {
         Data dataToDelete = loadDataById(data.getId());
         setModificationMetaData(dataToDelete);
 
         return save(dataToDelete);
-    }
-
-
-    public Data undo(long id) throws EntityNotFoundException, EntityCannotBeChangedException {
-        Data dataToUndo = loadDataById(id);
-        setModificationMetaData(dataToUndo);
-
-        return dataToUndo;
     }
 
 }

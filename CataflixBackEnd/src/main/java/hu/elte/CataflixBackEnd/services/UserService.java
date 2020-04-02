@@ -10,12 +10,16 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.EntityNotFoundException;
 
+
 @Service
 @SessionScope
 public class UserService extends BaseService<UserEntity> {
 
     private UserRepository userRepository;
 
+    public UserService() {
+
+    }
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -29,14 +33,15 @@ public class UserService extends BaseService<UserEntity> {
 
     @Override
     public UserEntity loadDataById(Long id) throws EntityNotFoundException {
-        return userRepository.findById(id).get();
+        return userRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(id + " not found!"));
     }
 
     @Override
     public UserEntity save(UserEntity userEntity) {
         return userRepository.save(userEntity);
     }
-
 
     public UserEntity loadUserByEmail(String email) throws EmailNotFoundException {
         return userRepository
@@ -49,5 +54,4 @@ public class UserService extends BaseService<UserEntity> {
                 .findByName(name)
                 .orElseThrow(() -> new NameNotFoundException(name + " not found!"));
     }
-
 }
