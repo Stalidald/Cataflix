@@ -17,10 +17,10 @@ WHERE NOT EXISTS ( SELECT name FROM movie_members WHERE name = "Zoe Saldana") LI
 
 
 SET FOREIGN_KEY_CHECKS=0;
-REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 1);
-REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 2);
-REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 3);
-REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (2, 3);
+--REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 1);
+--REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 2);
+--REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (1, 3);
+--REPLACE INTO movie_related_movie_members (movie_entity_id, related_movie_members_id)  VALUES (2, 3);
 SET FOREIGN_KEY_CHECKS=1;
 
 
