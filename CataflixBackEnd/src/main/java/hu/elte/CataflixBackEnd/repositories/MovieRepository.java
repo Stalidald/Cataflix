@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface MovieRepository extends CrudRepository<MovieEntity, Long> {
-    MovieEntity findByTitle(String title);
+    Optional<MovieEntity> findByTitle(String title);
 
     Iterable<MovieEntity> findAllByRating(int rate);
 
