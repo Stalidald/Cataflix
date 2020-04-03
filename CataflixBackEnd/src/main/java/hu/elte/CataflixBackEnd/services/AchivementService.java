@@ -3,9 +3,13 @@ package hu.elte.CataflixBackEnd.services;
 import hu.elte.CataflixBackEnd.entities.AchivementEntity;
 import hu.elte.CataflixBackEnd.repositories.AchivementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.EntityNotFoundException;
 
+@Service
+@SessionScope
 public class AchivementService extends BaseService<AchivementEntity> {
     AchivementRepository achivementRepository;
 
