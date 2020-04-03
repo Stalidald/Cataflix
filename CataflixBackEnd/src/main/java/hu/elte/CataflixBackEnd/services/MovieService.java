@@ -3,9 +3,13 @@ package hu.elte.CataflixBackEnd.services;
 import hu.elte.CataflixBackEnd.entities.MovieEntity;
 import hu.elte.CataflixBackEnd.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.EntityNotFoundException;
 
+@Service
+@SessionScope
 public class MovieService extends BaseService<MovieEntity> {
     MovieRepository movieRepository;
 

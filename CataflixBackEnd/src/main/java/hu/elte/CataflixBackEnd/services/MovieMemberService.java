@@ -2,10 +2,15 @@ package hu.elte.CataflixBackEnd.services;
 
 import hu.elte.CataflixBackEnd.entities.MovieMembersEntity;
 import hu.elte.CataflixBackEnd.repositories.MovieMembersRepository;
+import hu.elte.CataflixBackEnd.services.exceptions.NameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.EntityNotFoundException;
 
+@Service
+@SessionScope
 public class MovieMemberService extends BaseService<MovieMembersEntity> {
     MovieMembersRepository movieMembersRepository;
 
@@ -30,4 +35,15 @@ public class MovieMemberService extends BaseService<MovieMembersEntity> {
     public MovieMembersEntity save(MovieMembersEntity movieMembersEntity) {
         return movieMembersRepository.save(movieMembersEntity);
     }
+
+    public MovieMembersEntity loadUserByName(String name) throws NameNotFoundException {
+        return movieMembersRepository
+                .findByName(name)
+                .orElseThrow(() -> new NameNotFoundException(name + " not found!"));
+    }
+
+    public Iterable<MovieMembersEntity> loadByRole(String role) {
+        return movieMembersRepository.findAllByRole(role);
+    }
+
 }
