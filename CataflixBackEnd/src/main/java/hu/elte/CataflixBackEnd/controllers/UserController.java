@@ -49,7 +49,7 @@ public class UserController extends BaseController {
     }
 
 
-    @DeleteMapping("/deleteByTitle/{name}")
+    @DeleteMapping("/deleteByName/{name}")
     public ResponseEntity deleteMovieByName(@PathVariable String name) {
         try {
             return ResponseEntity.ok(userService.deleteData(userService.loadUserByName(name)));

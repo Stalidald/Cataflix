@@ -54,7 +54,7 @@ public class MovieController {
 
     @DeleteMapping("/deleteByTitle/{title}")
     public ResponseEntity deleteMovieByTitle(@PathVariable String title) {
-        MovieEntity movieToDelete = movieRepository.findByTitle(title);
+        MovieEntity movieToDelete = movieRepository.findByTitle(title).get();
         if (movieToDelete != null) {
             movieRepository.delete(movieToDelete);
             return ResponseEntity.ok().build();
