@@ -7,7 +7,7 @@ matrix:
        - chmod +x ./CataflixBackEnd/mvnw
        - chmod +x ./CataflixBackEnd/build.sh
        - cd ./CataflixBackEnd
-      script: ./CataflixBackEnd/build.sh
+      script: ./build.sh
     - language: node_js
       node_js:
        - "11.0"
