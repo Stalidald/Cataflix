@@ -1,14 +1,12 @@
 package hu.elte.CataflixBackEnd.services;
 
 import hu.elte.CataflixBackEnd.entities.MovieEntity;
-import hu.elte.CataflixBackEnd.repositories.MovieRepository;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Arrays;
@@ -16,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DataJpaTest
 @RunWith(MockitoJUnitRunner.class)
 class MovieServiceTest {
     @MockBean
