@@ -6,6 +6,7 @@ matrix:
       before_install: 
        - chmod +x ./CataflixBackEnd/mvnw
        - chmod +x ./CataflixBackEnd/build.sh
+       - cd ./CataflixBackEnd
       script: ./CataflixBackEnd/build.sh
     - language: node_js
       node_js:
