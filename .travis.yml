@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+matrix:
+  include:
+    - language: java
+      before_install: 
+       - chmod +x mvnw
+       - chmod +x ./CataflixBackEnd/build.sh
+      script: ./CataflixBackEnd/build.sh
+    - language: node_js
+      node_js:
+       - "11.0"
+      before_install:
+       - chmod +x ./CataflixFrontEnd/build.sh
+       - npm install -g @angular/cli
+       - cd ./CataflixFrontEnd
+      script: ./build.sh

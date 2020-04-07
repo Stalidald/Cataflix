@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 @Service
 @SessionScope
 public class MovieService extends BaseService<MovieEntity> {
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     public MovieService() { }
 
@@ -19,6 +19,8 @@ public class MovieService extends BaseService<MovieEntity> {
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
+
+
 
     @Override
     public Iterable<MovieEntity> listAllData() {
