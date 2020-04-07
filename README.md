@@ -1,11 +1,14 @@
+[![Build Status](https://travis-ci.org/Stalidald/Cataflix.svg?branch=develop)](https://travis-ci.org/Stalidald/Cataflix)
 # CataFlix
 
 * [Bevezetés](README.md#intro)
 * [Frontend Dokumentáció](/CataflixFrontEnd/README.md)
 * [Backend Dokumentáció helye](/CataflixBackEnd/README.md)
 * [Funkciók](README.md#features)
+* [CI] (README.md#CI)
 * [Megjegyzés](README.md#notification)
 * [Fejlesztők](README.md#developers)
+
 
 ## [Bevezetés](#intro)
 
@@ -19,6 +22,14 @@ A Kezdőlapról elérhetőek:
 * Kifizetett műsorok
 * Profil műveletek (Regisztráció, Belépés, Saját Profil)
 
+## [CI rendszer](#CI)
+CI rendszernek az online elérhető [Travis](https://travis-ci.org/) -t választottuk. 
+* Telepítés és bejelentkezés nélkül láthatjuk a felületet.
+* Egyidőben buildeli a Front-end és a Back-end részt.
+* Gyökérkönyvtárban a .travis.yml konfigurációs fájl felelős a buildelésért.
+* A README.md tetején található jelzés mutatja a build legutolsó állapotát.
+* Teszteket futtat automatikusan.
+
 ## [Megjegyzés](#notification)
 
 Az alkalmazás fejlesztés alatt áll. Az éppen futó problémák a projekt [issue board](https://github.com/Stalidald/Cataflix/issues)-ján találhatóak.
@@ -30,3 +41,4 @@ Az alkalmazás fejlesztés alatt áll. Az éppen futó problémák a projekt [is
 * Barton Patrik
 
 (ELTE @IK, 2020 - Projekt Eszközök)
+

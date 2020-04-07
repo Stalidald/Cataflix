@@ -6,9 +6,14 @@ import hu.elte.CataflixBackEnd.services.exceptions.EmailNotFoundException;
 import hu.elte.CataflixBackEnd.services.exceptions.NameNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,7 +28,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@DataJpaTest
 public class UserServiceTests {
 
     @TestConfiguration
@@ -42,8 +47,9 @@ public class UserServiceTests {
 
     private List<UserEntity> userEntities;
 
-    @Before
+    @BeforeAll
     public void setup() {
+
         userEntities = Arrays.asList(
                 new UserEntity("Feri", "stalidald@gmail.com", "alma123"),
                 new UserEntity("Tomi", "tomi19990314@gmail.com", "asd1234"),
