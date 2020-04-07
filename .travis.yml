@@ -4,7 +4,7 @@ matrix:
   include:
     - language: java
       before_install: 
-       - chmod +x mvnw
+       - chmod +x ./CataflixBackEnd/mvnw
        - chmod +x ./CataflixBackEnd/build.sh
       script: ./CataflixBackEnd/build.sh
     - language: node_js
