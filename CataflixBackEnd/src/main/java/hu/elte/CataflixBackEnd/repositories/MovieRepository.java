@@ -13,4 +13,6 @@ public interface MovieRepository extends CrudRepository<MovieEntity, Long> {
     Iterable<MovieEntity> findAllByRating(int rate);
 
     Iterable<MovieEntity> findAllByRatingAfter(int rate);
+
+    Iterable<MovieEntity> findAllByRatingBefore(int rate);
 }

@@ -16,17 +16,17 @@ public class AchivementController extends BaseController {
     AchivementService achivementService;
 
     @GetMapping("")
-    public ResponseEntity<Iterable<AchivementEntity>> listAllUser() {
+    public ResponseEntity<Iterable<AchivementEntity>> listAllAchivement() {
         return ResponseEntity.ok(achivementService.listAllData());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AchivementEntity> getUserById(@PathVariable long id) {
+    public ResponseEntity<AchivementEntity> getAchivementById(@PathVariable long id) {
         return ResponseEntity.ok(achivementService.loadDataById(id));
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<AchivementEntity> getUserByName(@PathVariable String name) {
+    public ResponseEntity<AchivementEntity> getAchivementByName(@PathVariable String name) {
         try {
             return ResponseEntity.ok(achivementService.findByName(name));
         } catch (EntityNotFoundException e) {
@@ -34,14 +34,14 @@ public class AchivementController extends BaseController {
         }
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<?> deleteUserById(@PathVariable long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAchivementById(@PathVariable long id) {
         return ResponseEntity
                 .ok(achivementService.deleteData(achivementService.loadDataById(id)));
     }
 
     @DeleteMapping("/deleteByName/{name}")
-    public ResponseEntity deleteMovieByName(@PathVariable String name) {
+    public ResponseEntity deleteAchivementByName(@PathVariable String name) {
         return ResponseEntity.ok(achivementService.deleteData(achivementService.findByName(name)));
     }
 }

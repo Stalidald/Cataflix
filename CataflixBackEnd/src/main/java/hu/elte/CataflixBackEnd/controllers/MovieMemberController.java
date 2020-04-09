@@ -16,26 +16,26 @@ public class MovieMemberController extends BaseController {
     MovieMemberService movieMemberService;
 
     @GetMapping("")
-    public ResponseEntity<Iterable<MovieMembersEntity>> listAllUser() {
+    public ResponseEntity<Iterable<MovieMembersEntity>> listAllMovieMember() {
         return ResponseEntity.ok(movieMemberService.listAllData());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieMembersEntity> getUserById(@PathVariable long id) {
+    public ResponseEntity<MovieMembersEntity> getMovieMemberById(@PathVariable long id) {
         return ResponseEntity.ok(movieMemberService.loadDataById(id));
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<MovieMembersEntity> getUserByName(@PathVariable String name) {
+    public ResponseEntity<MovieMembersEntity> getMovieMemberByName(@PathVariable String name) {
         try {
-            return ResponseEntity.ok(movieMemberService.loadUserByName(name));
+            return ResponseEntity.ok(movieMemberService.loadMovieMemberByName(name));
         } catch (NameNotFoundException e) {
             return createBadRequest(e);
         }
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<?> deleteUserById(@PathVariable long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMovieMemberById(@PathVariable long id) {
         return ResponseEntity
                 .ok(movieMemberService.deleteData(movieMemberService.loadDataById(id)));
     }
@@ -43,7 +43,7 @@ public class MovieMemberController extends BaseController {
     @DeleteMapping("/deleteByName/{name}")
     public ResponseEntity deleteMovieByName(@PathVariable String name) {
         try {
-            return ResponseEntity.ok(movieMemberService.deleteData(movieMemberService.loadUserByName(name)));
+            return ResponseEntity.ok(movieMemberService.deleteData(movieMemberService.loadMovieMemberByName(name)));
         } catch (NameNotFoundException ex) {
             return createBadRequest(ex);
         }

@@ -1,65 +1,62 @@
 package hu.elte.CataflixBackEnd.controllers;
 
 import hu.elte.CataflixBackEnd.entities.MovieEntity;
-import hu.elte.CataflixBackEnd.repositories.MovieRepository;
+import hu.elte.CataflixBackEnd.services.MovieService;
+import hu.elte.CataflixBackEnd.services.exceptions.NameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("movies")
-public class MovieController {
+public class MovieController extends BaseController {
     @Autowired
-    MovieRepository movieRepository;
+    MovieService movieService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<MovieEntity>> getAllMovie() {
-        return ResponseEntity.ok(movieRepository.findAll());
+        return ResponseEntity.ok(movieService.listAllData());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MovieEntity> getMovieById(@PathVariable long id) {
-        Optional<MovieEntity> user = movieRepository.findById(id);
-        if (user.isPresent()) return ResponseEntity.ok(user.get());
-        else return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(movieService.loadDataById(id));
     }
 
     @GetMapping("/rating/{rate}")
     public ResponseEntity<Iterable<MovieEntity>> getMoviesByRating(@PathVariable int rate) {
-        return ResponseEntity.ok(movieRepository.findAllByRating(rate));
+        return ResponseEntity.ok(movieService.findRating(rate));
     }
 
     @GetMapping("/ratingIsHigher/{rate}")
     public ResponseEntity<Iterable<MovieEntity>> getMoviesByRatingAfter(@PathVariable int rate) {
-        return ResponseEntity.ok(movieRepository.findAllByRatingAfter(rate));
+        return ResponseEntity.ok(movieService.findAboveRating(rate));
+    }
+
+    @GetMapping("/ratingIsLower/{rate}")
+    public ResponseEntity<Iterable<MovieEntity>> getMoviesByRatingBefore(@PathVariable int rate) {
+        return ResponseEntity.ok(movieService.findBelowRating(rate));
     }
 
     @PostMapping("")
     public ResponseEntity<?> addMovie(@RequestBody MovieEntity movieEntity) {
-        MovieEntity savedMovie = movieRepository.save(movieEntity);
-        return ResponseEntity.ok(savedMovie);
+        return ResponseEntity.ok(movieService.save(movieEntity));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteMovieById(@PathVariable long id) {
-        Optional<MovieEntity> movieToDelete = movieRepository.findById(id);
-        if (movieToDelete.isPresent()) {
-            movieRepository.deleteById(id);
-            return ResponseEntity.ok().build();
-        } else
-            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(movieService.deleteData(movieService.loadDataById(id)));
     }
 
     @DeleteMapping("/deleteByTitle/{title}")
     public ResponseEntity deleteMovieByTitle(@PathVariable String title) {
-        MovieEntity movieToDelete = movieRepository.findByTitle(title).get();
-        if (movieToDelete != null) {
-            movieRepository.delete(movieToDelete);
-            return ResponseEntity.ok().build();
-        } else
-            return ResponseEntity.notFound().build();
+        try {
+            return ResponseEntity.ok(movieService.deleteData(movieService.loadDataByTitle(title)));
+        } catch (EntityNotFoundException ex) {
+            return createBadRequest(ex);
+        }
     }
 
 
