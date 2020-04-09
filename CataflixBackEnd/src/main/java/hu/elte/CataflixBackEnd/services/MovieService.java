@@ -1,7 +1,9 @@
 package hu.elte.CataflixBackEnd.services;
 
 import hu.elte.CataflixBackEnd.entities.MovieEntity;
+import hu.elte.CataflixBackEnd.entities.UserEntity;
 import hu.elte.CataflixBackEnd.repositories.MovieRepository;
+import hu.elte.CataflixBackEnd.services.exceptions.NameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -20,8 +22,6 @@ public class MovieService extends BaseService<MovieEntity> {
         this.movieRepository = movieRepository;
     }
 
-
-
     @Override
     public Iterable<MovieEntity> listAllData() {
         return movieRepository.findAll();
@@ -32,6 +32,12 @@ public class MovieService extends BaseService<MovieEntity> {
         return movieRepository
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id + " not found!"));
+    }
+
+    public MovieEntity loadDataByTitle(String title) throws EntityNotFoundException {
+        return movieRepository
+                .findByTitle(title)
+                .orElseThrow(() -> new EntityNotFoundException(title + " not found!"));
     }
 
     @Override
@@ -45,9 +51,18 @@ public class MovieService extends BaseService<MovieEntity> {
                 .orElseThrow(() -> new EntityNotFoundException(title + " not found!"));
     }
 
+    public Iterable<MovieEntity> findRating(int rating) {
+        return movieRepository.findAllByRating(rating);
+    }
+
     public Iterable<MovieEntity> findAboveRating(int rating) {
         return movieRepository.findAllByRatingAfter(rating);
     }
+
+    public Iterable<MovieEntity> findBelowRating(int rating) {
+        return movieRepository.findAllByRatingBefore(rating);
+    }
+
 
 
 }

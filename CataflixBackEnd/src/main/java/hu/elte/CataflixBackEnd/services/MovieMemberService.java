@@ -36,7 +36,7 @@ public class MovieMemberService extends BaseService<MovieMembersEntity> {
         return movieMembersRepository.save(movieMembersEntity);
     }
 
-    public MovieMembersEntity loadUserByName(String name) throws NameNotFoundException {
+    public MovieMembersEntity loadMovieMemberByName(String name) throws NameNotFoundException {
         return movieMembersRepository
                 .findByName(name)
                 .orElseThrow(() -> new NameNotFoundException(name + " not found!"));
