@@ -14,6 +14,10 @@ import javax.persistence.EntityNotFoundException;
 public class MovieMemberService extends BaseService<MovieMembersEntity> {
     MovieMembersRepository movieMembersRepository;
 
+    public MovieMemberService() {
+
+    }
+
     @Autowired
     public MovieMemberService(MovieMembersRepository movieMembersRepository) {
         this.movieMembersRepository = movieMembersRepository;

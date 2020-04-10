@@ -27,4 +27,9 @@ public class MovieMembersEntity extends BaseEntity{
     @JsonBackReference
     private List<MovieEntity> relatedMovies;
 
+    public MovieMembersEntity(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
 }

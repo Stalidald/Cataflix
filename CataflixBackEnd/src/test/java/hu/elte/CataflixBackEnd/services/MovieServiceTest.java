@@ -51,24 +51,8 @@ class MovieServiceTest {
         Mockito.when(movieService.listAllData()).thenReturn(movieEntities);
         assertEquals(movieService.listAllData(), movieEntities);
     }
-/*
-    @Test
-    void loadDataByWrongId() {
-        Assertions.assertThrows(EntityNotFoundException.class, () -> {
-            movieService.loadDataById(10L);
-        });
-    }
 
-    @Test
-    void save() {
-        assertEquals(movieService.save(new MovieEntity("Test", 1)), new MovieEntity("Test", 1));
-    }
 
-    @Test
-    void findByTitle() {
-        assertEquals(movieService.findByTitle("Avatar"), movieEntities.get(1));
-    }
-    */
 }
 
 
