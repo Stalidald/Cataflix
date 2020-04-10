@@ -120,7 +120,11 @@
 				<version>2.22.2</version>
 
 				<configuration>
+					<runOrder>alphabetical</runOrder>
+					<useSystemClassLoader>false</useSystemClassLoader>
 					<includes>
+						<include>**/*Test.class</include>
+						<include>**/*test.class</include>
 						<include>**/*Tests.class</include>
 						<include>**/*tests.class</include>
 					</includes>
