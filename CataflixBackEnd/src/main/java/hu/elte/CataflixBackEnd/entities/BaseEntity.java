@@ -39,10 +39,16 @@ public class BaseEntity {
     @JsonIgnore
     protected Date modified;
 
+    /**
+     * @return id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * @return version
+     */
     public int getVersion() {
         return version;
     }

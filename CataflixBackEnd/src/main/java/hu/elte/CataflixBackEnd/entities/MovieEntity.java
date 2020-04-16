@@ -36,6 +36,11 @@ public class MovieEntity extends BaseEntity {
     @Column
     private int rating;
 
+    /**
+     * Movie entity constructor
+     * @param title of the movie
+     * @param rating of the movie
+     */
     public MovieEntity(String title, int rating) {
         this.title = title;
         this.rating = rating;
