@@ -50,6 +50,10 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * Checks recieved authentication data against data in database
+     * @param loginRequest object
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -70,6 +74,10 @@ public class AuthController {
                 roles));
     }
 
+    /**
+     * Registers a user, checking if inserted data is taken already, storing it in database otherwise.
+     * @param signUpRequest object
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUserName(signUpRequest.getUsername())) {

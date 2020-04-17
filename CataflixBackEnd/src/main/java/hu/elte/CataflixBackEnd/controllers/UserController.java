@@ -14,16 +14,25 @@ public class UserController extends BaseController {
     @Autowired
     UserService userService;
 
+    /**
+     * @return all stored users
+     */
     @GetMapping("")
     public ResponseEntity<Iterable<UserEntity>> listAllUser() {
         return ResponseEntity.ok(userService.listAllData());
     }
 
+    /**
+     * @return one user, selected by ID
+     */
     @GetMapping("/{id}")
     public ResponseEntity<UserEntity> getUserById(@PathVariable long id) {
         return ResponseEntity.ok(userService.loadDataById(id));
     }
 
+    /**
+     * @return one user, selected by e-mail
+     */
     @GetMapping("/email/{email}")
     public ResponseEntity<UserEntity> getUserByEmail(@PathVariable String email) {
         try {
@@ -34,6 +43,9 @@ public class UserController extends BaseController {
 
     }
 
+    /**
+     * @return one user, selected by name
+     */
     @GetMapping("/name/{name}")
     public ResponseEntity<UserEntity> getUserByName(@PathVariable String name) {
         try {
@@ -43,12 +55,17 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * Delete a single user selected by ID
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable long id) {
         return ResponseEntity.ok(userService.deleteData(userService.loadDataById(id)));
     }
 
-
+    /**
+     * Delete a single user selected by name
+     */
     @DeleteMapping("/deleteByName/{name}")
     public ResponseEntity deleteMovieByName(@PathVariable String name) {
         try {
