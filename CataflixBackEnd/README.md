@@ -15,5 +15,5 @@ Az adatbázis használatához szükséges konfigurációkat (felhasználónév, 
 Az adatbázis létrehozása szükséges az első indítás előtt a megfelelő névvel, ezután az alkalmazás magától fogja legenerálni az entitás táblákat és azoknak a kapcsolatait.
 
 ### Javadoc generálás
-Az alkalmazás az automatikus buildelés során generál egy javadocot amit a Cataflix\CataflixBackEnd\target\site\apidocs\index.html -en tudunk megtekinteni.
-Ehhez le kell tölteni az alkalmazást és lokális környezetbe buildelni azt.
+Az alkalmazás az automatikus buildelés során generál egy [javadocot](javadocumentation/javadocumentations).
+Ez githubon csak forráskódilag tekinthető meg, azonban ha letöltjük lokális környezetbe a projektet, akkor láthatóak rendesen az oldalak.
