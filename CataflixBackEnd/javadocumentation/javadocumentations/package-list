@@ -1,0 +1,13 @@
+hu.elte.CataflixBackEnd
+hu.elte.CataflixBackEnd.controllers
+hu.elte.CataflixBackEnd.entities
+hu.elte.CataflixBackEnd.models
+hu.elte.CataflixBackEnd.payload.request
+hu.elte.CataflixBackEnd.payload.response
+hu.elte.CataflixBackEnd.repositories
+hu.elte.CataflixBackEnd.security
+hu.elte.CataflixBackEnd.security.jwt
+hu.elte.CataflixBackEnd.security.services
+hu.elte.CataflixBackEnd.services
+hu.elte.CataflixBackEnd.services.exceptions
+hu.elte.CataflixBackEnd.services.validator

@@ -5,7 +5,7 @@
 * [Frontend Dokumentáció](/CataflixFrontEnd/README.md)
 * [Backend Dokumentáció helye](/CataflixBackEnd/README.md)
 * [Funkciók](README.md#features)
-* [CI] (README.md#CI)
+* [CI](README.md#CI)
 * [Megjegyzés](README.md#notification)
 * [Fejlesztők](README.md#developers)
 
