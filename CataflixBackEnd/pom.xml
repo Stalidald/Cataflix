@@ -138,6 +138,8 @@
 				<configuration>
 					<show>private</show>
 					<nohelp>true</nohelp>
+					<reportOutputDirectory>${basedir}/javadocumentation</reportOutputDirectory>
+					<destDir>javadocumentations</destDir>
 				</configuration>
 			</plugin>
 			<plugin>
