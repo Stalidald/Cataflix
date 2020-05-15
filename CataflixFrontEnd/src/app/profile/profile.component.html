@@ -1,0 +1,32 @@
+<div class="container" *ngIf="currentUser; else loggedOut">
+  <header class="jumbotron">
+      <h2>Profil adatok</h2>
+    <form>
+      <div class="form-group">
+        <mat-form-field>
+          <input name="title" [(ngModel)]="editingUser.userName" matInput type="text" disabled
+            placeholder="Felhasználónév">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input name="email" [(ngModel)]="editingUser.email" matInput type="text" disabled placeholder="Email">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input name="name" [(ngModel)]="editingUser.name" matInput type="text" placeholder="Teljes neve">
+        </mat-form-field>
+      </div>
+
+      <button (click)="editProfile()">Módosítás</button>
+    </form>
+  </header>
+
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

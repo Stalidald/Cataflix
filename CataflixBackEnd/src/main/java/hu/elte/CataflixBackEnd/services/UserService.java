@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 
 @Service
@@ -52,6 +53,23 @@ public class UserService extends BaseService<UserEntity> {
         return userRepository
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id + " not found!"));
+    }
+
+    /**
+     * Updates user
+     * @param newUser user to update
+     * @param id the if of the user
+     * @return updated user, or null, if user does not exist
+     */
+    public UserEntity updateUser(UserEntity newUser, Long id) {
+        Optional<UserEntity> oldUser = userRepository.findById(id);
+        if(oldUser.isPresent()){
+            newUser.setId(id);
+            UserEntity newSavedUser = userRepository.save(newUser);
+            return newSavedUser;
+        }else{
+            return null;
+        }
     }
 
     /**

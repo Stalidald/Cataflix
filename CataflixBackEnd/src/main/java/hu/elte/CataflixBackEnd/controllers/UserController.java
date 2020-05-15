@@ -31,6 +31,18 @@ public class UserController extends BaseController {
     }
 
     /**
+     *
+     * @param newUser user to update
+     * @param id the id of user
+     * @return updated user, or null if user does not exits
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<UserEntity> putUser(@RequestBody UserEntity newUser,@PathVariable long id) {
+        System.out.println(newUser.getEmail());
+        return ResponseEntity.ok(userService.updateUser(newUser,id));
+    }
+
+    /**
      * @return one user, selected by e-mail
      */
     @GetMapping("/email/{email}")
