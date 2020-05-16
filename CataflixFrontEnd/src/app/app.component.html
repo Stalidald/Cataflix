@@ -9,7 +9,10 @@
         <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
       </li>
       <li class="nav-item">
-        <a href="/movies" class="nav-link" *ngIf="isLoggedIn" routerLink="movies">Filmek</a>
+        <a href="/movies" class="nav-link" *ngIf="isLoggedIn" routerLink="movies">Összes film</a>
+      </li>
+      <li class="nav-item">
+        <a href="/movies/owned" class="nav-link" *ngIf="isLoggedIn" routerLink="movies/owned">Megvásárolt filmek</a>
       </li>
     </ul>
 

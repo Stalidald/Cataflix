@@ -20,6 +20,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BalanceTopupComponent } from './balance-topup/balance-topup.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatButtonModule} from '@angular/material/button';
+import { MoviePageComponent } from './movie-page/movie-page.component';
+import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,9 @@ import { BalanceTopupComponent } from './balance-topup/balance-topup.component';
     HomeComponent,
     ProfileComponent,
     MoviesComponent,
-    BalanceTopupComponent
+    BalanceTopupComponent,
+    MoviePageComponent,
+    WarningDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,11 @@ import { BalanceTopupComponent } from './balance-topup/balance-topup.component';
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

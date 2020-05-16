@@ -3,6 +3,10 @@ import { MovieMember } from './movie-member';
 
 export class Movie extends BaseClass{
     title: String;
+    category: String;
+    price: number;
+    imageURL: String;
+    videoURL: String;
     ageLimit: number;
     releaseYear: number;
     description: String;

@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MovieService } from '../services/movie.service';
+import { Movie } from '../models/movie';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { Router, ActivatedRoute } from '@angular/router';
+import { User } from '../models/user';
 import { UserService } from '../services/user.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-movies',
@@ -7,19 +15,43 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-  content = '';
-
-  constructor(private userService: UserService) { }
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  movies: Movie[] = []
+  user: User = new User()
+  showOnlyOwnedFilms = false;
+  displayedColumns: string[] = ['imageURL', 'title', 'releaseYear', 'category', 'ageLimit', 'rating', 'price', 'view'];
+  dataSource = null
+  constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService, private userService: UserService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
-    /*
-    this.userService.getUserBoard().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );*/
+    if (this.route.snapshot.toString().indexOf('owned') !== -1) {
+      this.showOnlyOwnedFilms = true;
+      this.userService.getUserByEmail(this.tokenStorageService.getUser().email).subscribe(x => {
+        this.user = x
+        console.log(this.user.password)
+      });
+    } else {
+      this.movieService.getMovies().subscribe(data => {
+        this.movies = data;
+        this.dataSource = new MatTableDataSource(this.movies);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Találatok száma oldalanként:';
+        this.dataSource.filterPredicate = (data, filter) =>
+          (data.title.trim().toLowerCase().indexOf(filter) !== -1 ||
+            data.category.trim().toLowerCase().indexOf(filter) !== -1 ||
+            data.description.trim().toLowerCase().indexOf(filter) !== -1);
+      });
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  goToMoviePage(movie: Movie) {
+    this.router.navigate(['movies/' + movie.id]);
   }
 }

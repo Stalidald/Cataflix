@@ -20,6 +20,18 @@ public class MovieEntity extends BaseEntity {
     private String title;
 
     @Column
+    private String category;
+
+    @Column
+    private int price;
+
+    @Column
+    private String imageURL;
+
+    @Column
+    private String videoURL;
+
+    @Column
     @ManyToMany(targetEntity = MovieMembersEntity.class, fetch = FetchType.EAGER)
     @JsonBackReference
     private List<MovieMembersEntity> relatedMovieMembers;

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminBoardComponent } from './admin-board/admin-board.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MoviesComponent } from './movies/movies.component';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminBoardComponent },
   { path: 'movies', component: MoviesComponent },
+  { path: 'movies/owned', component: MoviesComponent },
+  { path: 'movies/:movieId', component: MoviePageComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

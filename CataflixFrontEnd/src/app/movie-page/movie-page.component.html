@@ -1,0 +1,30 @@
+<div class="container">
+    <header class="jumbotron">
+        <table>
+            <tr>
+                <td><img width="300" [src]="currentMovie.imageURL"> </td>
+                <td>
+                    <h1>{{currentMovie.title}} ({{currentMovie.releaseYear}})</h1>
+                    <b>Kategória:</b> {{currentMovie.category}}<br>
+                    <br>
+                    <b>Korhatár:</b> {{currentMovie.ageLimit}}<br>
+                    <br>
+                    <b>Értékelés:</b> {{currentMovie.rating}} / 10<br>
+                    <br>
+                    <b>Leírás:</b><br>{{currentMovie.description}}<br>
+                    <br>
+                    <h2><b>Ár:</b> ${{currentMovie.price}}</h2>
+                    <ng-container *ngIf="!movieIsOwned">
+                        <button mat-raised-button color="primary" (click)="buy()"
+                            [disabled]="currentMovie.price > user.balance">Vásárlás</button>
+                    </ng-container>
+                </td>
+            </tr>
+            <ng-container *ngIf="movieIsOwned">
+                <td>
+                    video
+                </td>
+            </ng-container>
+        </table>
+    </header>
+</div>
