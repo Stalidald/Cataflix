@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
-import { AdminBoardComponent } from './admin-board/admin-board.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -26,19 +25,22 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
 import { MoviePageComponent } from './movie-page/movie-page.component';
 import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MatIconModule } from '@angular/material/icon';
+import { PremiumBoardComponent } from './premium-board/premium-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AdminBoardComponent,
     HomeComponent,
     ProfileComponent,
     MoviesComponent,
     BalanceTopupComponent,
     MoviePageComponent,
-    WarningDialogComponent
+    WarningDialogComponent,
+    PremiumBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,9 @@ import { WarningDialogComponent } from './warning-dialog/warning-dialog.componen
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    YouTubePlayerModule,
+    MatIconModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

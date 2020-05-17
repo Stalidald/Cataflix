@@ -3,16 +3,16 @@
     <a href="#" class="navbar-brand">Cataflix</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Kezdőlap </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <a href="/home" class="nav-link" routerLink="home" routerLinkActive="active">Kezdőlap </a>
       </li>
       <li class="nav-item">
-        <a href="/movies" class="nav-link" *ngIf="isLoggedIn" routerLink="movies">Összes film</a>
+        <a href="/movies" class="nav-link" *ngIf="isLoggedIn" routerLink="movies" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Összes film</a>
       </li>
       <li class="nav-item">
-        <a href="/movies/owned" class="nav-link" *ngIf="isLoggedIn" routerLink="movies/owned">Megvásárolt filmek</a>
+        <a href="/movies/owned" class="nav-link" *ngIf="isLoggedIn && ownedMoviesNumber!=0" routerLink="movies/owned" routerLinkActive="active">Megvásárolt filmek</a>
+      </li>
+      <li class="nav-item" *ngIf="showPremiumBoard">
+        <a href="/premium" class="nav-link" routerLink="premium-board" routerLinkActive="active">Prémium oldal</a>
       </li>
     </ul>
 
@@ -27,7 +27,7 @@
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">Profil: {{ username }}</a>
+        <a href="/profile" class="nav-link" routerLink="profile" routerLinkActive="active">Profil: {{ username }}</a>
       </li>
 
       <li class="nav-item">

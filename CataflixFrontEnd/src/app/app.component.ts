@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BalanceTopupComponent } from './balance-topup/balance-topup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from './services/user.service';
+import { User } from './models/user';
 
 
 @Component({
@@ -13,12 +14,14 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent implements OnInit {
   title = 'CataflixFrontEnd';
-  private roles: string[];
+  private roles: String[];
   isLoggedIn = false;
-  showAdminBoard = false;
+  showPremiumBoard = false;
   username: string;
   balanceLabel: number = 0;
+  ownedMoviesNumber: number = 0;
 
+  currentUser: User = new User();
 
   constructor(private tokenStorageService: TokenStorageService, public dialog: MatDialog, public _snackBar: MatSnackBar, public userService: UserService) {
   }
@@ -28,12 +31,14 @@ export class AppComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-
-      this.username = user.username;
-      this.refreshBalance()
+      this.userService.getUserByEmail(user.email).subscribe(x => {
+        this.currentUser = x;
+        this.roles = this.currentUser.roles
+        this.showPremiumBoard = JSON.stringify(this.roles).includes("ROLE_PREMIUM");
+        this.username = user.username;
+        this.refreshBalance()
+      });
     }
   }
 
@@ -66,7 +71,17 @@ export class AppComponent implements OnInit {
     const user = this.tokenStorageService.getUser();
     this.userService.getUserByEmail(user.email).subscribe(x => {
       this.balanceLabel = x.balance;
+      this.ownedMoviesNumber = x.ownedMovies.length
+      console.log(this.ownedMoviesNumber)
     });
   }
 
+  refreshPremiumStatus() {
+    this.userService.getUserByEmail(this.currentUser.email).subscribe(x => {
+      this.currentUser = x;
+      this.roles = this.currentUser.roles
+      this.showPremiumBoard = JSON.stringify(this.roles).includes("ROLE_PREMIUM");
+      this.refreshBalance()
+    });
+  }
 }
