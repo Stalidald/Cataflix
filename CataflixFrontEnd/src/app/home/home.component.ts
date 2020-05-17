@@ -7,20 +7,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  content: string;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.content="public content"
-    /*
-    this.userService.getPublicContent().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );*/
   }
 }

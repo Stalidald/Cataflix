@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-balance-topup',

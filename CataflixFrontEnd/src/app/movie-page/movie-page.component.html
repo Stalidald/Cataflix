@@ -13,18 +13,22 @@
                     <br>
                     <b>Leírás:</b><br>{{currentMovie.description}}<br>
                     <br>
-                    <h2><b>Ár:</b> ${{currentMovie.price}}</h2>
+                    <b>Főszereplők:</b>
+                    <li *ngFor="let a of currentMovie.relatedMovieMembers">
+                        {{ a.name }}
+                    </li>
+                    <br>
+                    <h2><b>Ár:</b> ${{currentMovie.price}}<ng-container *ngIf="movieIsOwned"> <i> (már megvásárolva)</i></ng-container></h2> 
                     <ng-container *ngIf="!movieIsOwned">
                         <button mat-raised-button color="primary" (click)="buy()"
                             [disabled]="currentMovie.price > user.balance">Vásárlás</button>
                     </ng-container>
                 </td>
             </tr>
-            <ng-container *ngIf="movieIsOwned">
-                <td>
-                    video
-                </td>
-            </ng-container>
+            
         </table>
+        <ng-container *ngIf="movieIsOwned">
+                <youtube-player width="100%" height="600" videoId="{{currentMovie.videoURL}}"></youtube-player>
+        </ng-container>
     </header>
 </div>

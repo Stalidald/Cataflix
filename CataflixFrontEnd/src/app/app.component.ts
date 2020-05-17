@@ -13,7 +13,7 @@ import { User } from './models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'CataflixFrontEnd';
+  title = 'Cataflix';
   private roles: String[];
   isLoggedIn = false;
   showPremiumBoard = false;
@@ -72,7 +72,6 @@ export class AppComponent implements OnInit {
     this.userService.getUserByEmail(user.email).subscribe(x => {
       this.balanceLabel = x.balance;
       this.ownedMoviesNumber = x.ownedMovies.length
-      console.log(this.ownedMoviesNumber)
     });
   }
 

@@ -29,7 +29,15 @@ export class MoviesComponent implements OnInit {
       this.showOnlyOwnedFilms = true;
       this.userService.getUserByEmail(this.tokenStorageService.getUser().email).subscribe(x => {
         this.user = x
-        console.log(this.user.password)
+        this.movies = this.user.ownedMovies;
+        this.dataSource = new MatTableDataSource(this.movies);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Találatok száma oldalanként:';
+        this.dataSource.filterPredicate = (data, filter) =>
+          (data.title.trim().toLowerCase().indexOf(filter) !== -1 ||
+            data.category.trim().toLowerCase().indexOf(filter) !== -1 ||
+            JSON.stringify(data.relatedMovieMembers).toLowerCase().indexOf(filter) !== -1);
       });
     } else {
       this.movieService.getMovies().subscribe(data => {
@@ -41,7 +49,8 @@ export class MoviesComponent implements OnInit {
         this.dataSource.filterPredicate = (data, filter) =>
           (data.title.trim().toLowerCase().indexOf(filter) !== -1 ||
             data.category.trim().toLowerCase().indexOf(filter) !== -1 ||
-            data.description.trim().toLowerCase().indexOf(filter) !== -1);
+            data.description.trim().toLowerCase().indexOf(filter) !== -1 ||
+            JSON.stringify(data.relatedMovieMembers).toLowerCase().indexOf(filter) !== -1);
       });
     }
   }

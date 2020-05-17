@@ -20,16 +20,16 @@ export class UserService {
     return this.http.get(API_URL + 'movies', { responseType: 'text' });
   }
 
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'users', { responseType: 'text' });
-  }
-
   getUserByEmail(email: String) {
     return this.http.get<User>(API_URL + 'users/email/' + email);
   }
 
   updateUser(user: User) {
     return this.http.put(API_URL+'users/' + user.id, user);
+  }
+
+  upgradeUser(user: User) {
+    return this.http.put(API_URL+'users/upgrade/' + user.id, user);
   }
 
 }

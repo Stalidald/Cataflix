@@ -18,10 +18,10 @@
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        <a href="/register" class="nav-link" routerLink="register" routerLinkActive="active">Regisztráció</a>
       </li>
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login" routerLinkActive="active">Bejelentkezés</a>
       </li>
     </ul>
 
@@ -34,7 +34,7 @@
         <div class="nav-link" id="balanceLabel" (click)="balancePopup()">Egyenleg: ${{balanceLabel}}</div>
       </li>
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">Kilépés</a>
       </li>
     </ul>
   </nav>
