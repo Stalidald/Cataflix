@@ -2,6 +2,7 @@ package hu.elte.CataflixBackEnd.controllers;
 
 import org.springframework.http.ResponseEntity;
 
+
 public class BaseController {
 
     /**

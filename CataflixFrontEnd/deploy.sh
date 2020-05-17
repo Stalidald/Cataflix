@@ -1,0 +1,1 @@
+scp -o "StrictHostKeyChecking no"  -i cataflix_key.ppk dist/CataflixFrontEnd/*.* stalidald@caesar.elte.hu:../web/Cataflix

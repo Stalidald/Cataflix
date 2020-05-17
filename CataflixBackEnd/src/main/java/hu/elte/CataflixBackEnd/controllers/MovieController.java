@@ -11,6 +11,7 @@ import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("movies")
+@CrossOrigin
 public class MovieController extends BaseController {
     @Autowired
     MovieService movieService;

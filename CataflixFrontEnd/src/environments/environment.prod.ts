@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  serverAddress: 'http://91.227.139.202:8080/'
 };

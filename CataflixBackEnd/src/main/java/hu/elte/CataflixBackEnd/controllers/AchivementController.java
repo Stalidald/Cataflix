@@ -10,6 +10,7 @@ import javax.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/achivement")
+@CrossOrigin
 public class AchivementController extends BaseController {
 
     @Autowired
