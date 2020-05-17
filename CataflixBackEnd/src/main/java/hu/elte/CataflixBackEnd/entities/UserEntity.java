@@ -48,19 +48,19 @@ public class UserEntity extends BaseEntity {
     private double balance;
 
     @Column
-    @OneToMany
-    private List<MovieEntity> ownedMovies;
+    @ManyToMany
+    public List<MovieEntity> ownedMovies;
 
     @Column
-    @OneToMany
+    @ManyToMany
     private List<MovieEntity> rentedMovies;
 
     @Column
-    @OneToMany
-    private List<AchivementEntity> unlockedAchivements;
+    @ManyToMany
+    public List<AchivementEntity> unlockedAchivements;
 
     @Column
-    @OneToMany
+    @ManyToMany
     private List<MovieEntity> wishList;
 
     @Column

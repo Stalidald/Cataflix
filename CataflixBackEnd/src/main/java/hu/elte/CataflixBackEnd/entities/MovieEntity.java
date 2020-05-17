@@ -20,8 +20,20 @@ public class MovieEntity extends BaseEntity {
     private String title;
 
     @Column
-    @ManyToMany(targetEntity = MovieMembersEntity.class, fetch = FetchType.EAGER)
-    @JsonBackReference
+    private String category;
+
+    @Column
+    private int price;
+
+    @Column
+    @Lob
+    private String imageURL;
+
+    @Column
+    private String videoURL;
+
+    @Column
+    @ManyToMany
     private List<MovieMembersEntity> relatedMovieMembers;
 
     @Column
@@ -31,6 +43,7 @@ public class MovieEntity extends BaseEntity {
     private int releaseYear;
 
     @Column
+    @Lob
     private String description;
 
     @Column

@@ -1,0 +1,45 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Cataflix</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home" routerLinkActive="active">Kezdőlap </a>
+      </li>
+      <li class="nav-item">
+        <a href="/movies" class="nav-link" *ngIf="isLoggedIn" routerLink="movies" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Összes film</a>
+      </li>
+      <li class="nav-item">
+        <a href="/movies/owned" class="nav-link" *ngIf="isLoggedIn && ownedMoviesNumber!=0" routerLink="movies/owned" routerLinkActive="active">Megvásárolt filmek</a>
+      </li>
+      <li class="nav-item" *ngIf="showPremiumBoard">
+        <a href="/premium" class="nav-link" routerLink="premium-board" routerLinkActive="active">Prémium oldal</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register" routerLinkActive="active">Regisztráció</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login" routerLinkActive="active">Bejelentkezés</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile" routerLinkActive="active">Profil: {{ username }}</a>
+      </li>
+
+      <li class="nav-item">
+        <div class="nav-link" id="balanceLabel" (click)="balancePopup()">Egyenleg: ${{balanceLabel}}</div>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">Kilépés</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

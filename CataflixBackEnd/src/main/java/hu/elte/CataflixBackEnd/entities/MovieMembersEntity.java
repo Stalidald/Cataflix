@@ -22,20 +22,10 @@ public class MovieMembersEntity extends BaseEntity{
     @Column
     private String role;
 
-    @Column
-    @ManyToMany(targetEntity = MovieEntity.class, fetch = FetchType.EAGER)
-    @JsonBackReference
-    private List<MovieEntity> relatedMovies;
-
-
     /**
      * Constructor of movie member entity
      * @param name of movie member
      * @param role of movie member
      */
-    public MovieMembersEntity(String name, String role) {
-        this.name = name;
-        this.role = role;
-    }
 
 }
