@@ -35,13 +35,16 @@ export class ProfileComponent implements OnInit {
     } else {
       Object.assign(this.currentUser, this.editingUser);
       this.userService.updateUser(this.currentUser).subscribe(x => {
-        window.location.reload()
+        this.ngOnInit()
+        this.appComponent.ngOnInit()
+        this.openSnackBar("Sikeres módosítás", "Értem")
       });
     }
   }
 
-  reloadPage(){
-    window.location.reload()
+  reloadPage() {
+    this.ngOnInit()
+    this.appComponent.ngOnInit()
   }
 
   openSnackBar(message: string, action: string) {
@@ -69,7 +72,8 @@ export class ProfileComponent implements OnInit {
         this.currentUser.balance = this.currentUser.balance - 20
         this.userService.upgradeUser(this.currentUser).subscribe(x => {
           this.appComponent.refreshPremiumStatus()
-          window.location.reload()
+          this.ngOnInit()
+          this.appComponent.ngOnInit()
           this.openSnackBar("Sikeres vásárlás", "Értem")
         })
       }

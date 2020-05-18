@@ -47,6 +47,8 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
 
+
+ 
   balancePopup() {
     const dialogRef = this.dialog.open(BalanceTopupComponent, {
       width: '250px',
