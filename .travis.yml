@@ -4,8 +4,10 @@ matrix:
   include:
     - language: java
       before_install: 
+       - chmod 400 ./CataflixBackEnd/cataflix_key_be.ppk
        - chmod +x ./CataflixBackEnd/mvnw
        - chmod +x ./CataflixBackEnd/build.sh
+       - chmod +x ./CataflixBackEnd/deploy_be.sh
        - cd ./CataflixBackEnd
       script: ./build.sh
     - language: node_js
