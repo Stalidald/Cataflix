@@ -17,7 +17,7 @@ A projekt célja egy webapplikáció elkészítése PC-re. Az applikáció abban
 
 ## [Elérhetőség](#access)
 Az alkalmazás megtekinthető és használható a [Cataflix](http://stalidald.web.elte.hu/Cataflix) oldalon.
-
+A deployt a Travis CI rendszer végzi minden commit után. A CataflixFrontEnd/deploy.sh és a CataflixBackEnd/deploy_be.sh scriptek alapján.
 
 ## [Funkciók](#features)
 
