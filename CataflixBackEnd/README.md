@@ -17,3 +17,4 @@ Az adatbázis létrehozása szükséges az első indítás előtt a megfelelő n
 ### Javadoc generálás
 Az alkalmazás az automatikus buildelés során generál egy [javadocot](javadocumentation/javadocumentations).
 Ez githubon csak forráskódilag tekinthető meg, azonban ha letöltjük lokális környezetbe a projektet, akkor láthatóak rendesen az oldalak.
+a
